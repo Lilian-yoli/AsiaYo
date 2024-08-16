@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  php:
+    build: .
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8000:8000"
+  
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    ports:
+      - 3305:3306
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+      - ./docker-compose/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+volumes:
+  db_data:
