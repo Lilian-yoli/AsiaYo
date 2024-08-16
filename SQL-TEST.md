@@ -21,7 +21,7 @@
 * 使用EXPLAIN查看SQL query的查詢策略  
   策略type若是All表示全表搜尋，需要避免這個狀況，了解查詢的瓶頸是在哪個步驟。
 
-* 設定index
+* 設定index  
   在bnbs.id, order.bnb_id, order.currency, 和 created_at設定index。
   ```
   CREATE INDEX idx_bnbs_id ON bnbs (id);
@@ -51,7 +51,7 @@
 	  bnbs ON TTA.bnb_id = bnbs.id
     ```
 
-* 分區（Partitioning）
+* 分區（Partitioning）  
   按照日期範圍（例如 created_at）進行分區。
   ```
   ALTER TABLE orders PARTITION BY RANGE (YEAR(created_at)) (
